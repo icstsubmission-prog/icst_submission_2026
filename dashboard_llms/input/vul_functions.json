@@ -1,0 +1,16 @@
+{"NewCustomer":
+    {"Vx0": [],
+    "Vx101": ["getAddressID"],
+    "Vx138": ["createAddress"],
+    "Vx158": ["getCOID"],
+    "Vx197": ["insertCostumer"],
+    "VxA": ["process", "getAddressID", "getCOID", "createAddress", "insertCostumer"]
+},
+"CreateNewCustomer":
+    {"Vx0": [],
+    "Vx078": ["createNewCustomer"],
+    "Vx103": ["enterAddress"],
+    "Vx113": ["enterAddress"],
+    "Vx132": ["enterAddress"],
+    "VxA": ["createNewCustomer", "enterAddress"]
+}}

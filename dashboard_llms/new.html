@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LLM Evaluation Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>LLM Evaluation Dashboard</h1>
+
+      <!-- General Selection -->
+      <section class="section">
+        <h2>General Results</h2>
+        <div class="controls">
+          <label for="llm">LLM:</label>
+          <select id="llm">
+            <option value="gpt-3.5-turbo">GPT-3.5</option>
+            <option value="gpt-4.1">GPT-4.1</option>
+            <option value="gpt-4o-mini">GPT-4o-mini</option>
+            <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+            <option value="gemini-2.5-flash">Gemini-2.5-flash</option>
+          </select>
+
+          <label for="prompt">Prompt:</label>
+          <select id="prompt">
+            <option value="prompt_1">Prompt 1</option>
+            <option value="prompt_2">Prompt 2</option>
+            <option value="prompt_4">Prompt 4</option>
+            <option value="prompt_5">Prompt 5</option>
+            <option value="universal">Universal</option>
+          </select>
+
+          <button class="btn-primary" onclick="loadData()">Load Results</button>
+        </div>
+
+        <!-- Comparison Section -->
+        <section class="section">
+          <label>
+            <input
+              type="checkbox"
+              id="toggleComparison"
+              onchange="toggleComparison()"
+            />
+            Compare Models (Metrics per Class)
+          </label>
+
+          <div id="comparisonSection" style="display: none">
+            <h2>Comparison</h2>
+            <div class="controls">
+              <label for="llm1">Model 1:</label>
+              <select id="llm1">
+                <option value="gpt-3.5-turbo">GPT-3.5</option>
+                <option value="gpt-4.1">GPT-4.1</option>
+                <option value="gpt-4o-mini">GPT-4o-mini</option>
+                <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+              </select>
+
+              <label for="llm2">Model 2:</label>
+              <select id="llm2">
+                <option value="gpt-3.5-turbo">GPT-3.5</option>
+                <option value="gpt-4.1">GPT-4.1</option>
+                <option value="gpt-4o-mini">GPT-4o-mini</option>
+                <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+              </select>
+
+              <label for="promptCompare">Prompt:</label>
+              <select id="promptCompare">
+                <option value="prompt_1">Prompt 1</option>
+                <option value="prompt_2">Prompt 2</option>
+                <option value="prompt_3">Prompt 3</option>
+                <option value="prompt_4">Prompt 4</option>
+                <option value="prompt_5">Prompt 5</option>
+              </select>
+
+              <label for="promptCompare2">Prompt:</label>
+              <select id="promptCompare2">
+                <option value="prompt_1">Prompt 1</option>
+                <option value="prompt_2">Prompt 2</option>
+                <option value="prompt_3">Prompt 3</option>
+                <option value="prompt_4">Prompt 4</option>
+                <option value="prompt_5">Prompt 5</option>
+              </select>
+
+              <button class="btn-primary" onclick="compareSelected()">
+                Compare
+              </button>
+            </div>
+
+            <div id="comparisonResult"></div>
+          </div>
+        </section>
+
+        <div
+          class="collapsible-container"
+          id="generalResultsContainer"
+          style="display: none"
+        >
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              General Confusion Matrix
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="generalTable" style="display: none"></div>
+                <div id="matrixTable" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Metrics per Category
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="categoryMetrics" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Metrics per Class
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="classMetrics" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Metrics per Practice
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="practiceMetrics" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Trustworthiness Score Table - Commented out as requested -->
+          <!--
+        <div class="collapsible">
+          <button type="button" class="collapsible-header">Trustworthiness Score Table</button>
+          <div class="collapsible-content">
+            <div class="collapsible-body">
+              <div id="lspTable" style="display: none"></div>
+            </div>
+          </div>
+        </div>
+        -->
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Interactive Score Plots
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div class="controls">
+                  <label for="fileSelect">Choose FileName:</label>
+                  <select id="fileSelect">
+                    <!-- opções preenchidas dinamicamente -->
+                  </select>
+
+                  <button class="btn-primary" onclick="loadScoreGraphic()">
+                    Load Results
+                  </button>
+                </div>
+
+                <div class="toolbar">
+                  <button id="togglePaperBtn" class="btn-primary">
+                    Show Groundtruth Comparison
+                  </button>
+                  <button
+                    id="btn-scoreNan"
+                    class="btn-primary"
+                    onclick="loadWithNanScore()"
+                  >
+                    Score with NAs
+                  </button>
+                </div>
+                <div id="mainPlot"></div>
+
+                <h3 id="detailTitle" style="display: none">Method Details</h3>
+                <div id="detailTable"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Graphic of Score 1 - Commented out as requested -->
+      <!--
+      <section class="section">
+        <label>
+          <input type="checkbox" id="toggle1" onchange="toggle1()" />
+          Graphic of Score 1
+        </label>
+
+        <div id="score1Results" style="display: none">
+          <h2>Score 1 Graphic</h2>
+          <div class="controls">
+            <label for="llm_score_1">Model:</label>
+            <select id="llm_score_1">
+              <option value="gpt-3.5-turbo">GPT-3.5-turbo</option>
+              <option value="gpt-4.1">GPT-4.1</option>
+              <option value="gpt-4o-mini">GPT-4o-mini</option>
+              <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+            </select>
+
+            <label for="prompt_score_1">Prompt:</label>
+            <select id="prompt_score_1">
+              <option value="prompt_1">Prompt 1</option>
+              <option value="prompt_2">Prompt 2</option>
+              <option value="prompt_5">Prompt 5</option>
+            </select>
+
+            <label for="scoreSelect_1">Escolher Score:</label>
+            <select id="scoreSelect_1">
+              <option value="qm">Score QM</option>
+              <option value="equal_weights">Score Manual</option>
+            </select>
+
+            <button class="btn-primary" onclick="loadData2()">
+              Show Graphic
+            </button>
+          </div>
+
+          <div id="score_1_Plot"></div>
+        </div>
+      </section>
+      -->
+    </div>
+
+    <script>
+      let basePrompt = null;
+      async function fetchJSON(path) {
+        const response = await fetch(path);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${path}`);
+        }
+        return await response.json();
+      }
+
+      function renderTable(containerId, data) {
+        const columns = [
+          "practice",
+          "correct_na",
+          "incorrect_na",
+          "real_na",
+          "correct_0",
+          "incorrect_0",
+          "real_0",
+          "correct_1",
+          "incorrect_1",
+          "real_1",
+        ];
+
+        let html = "<table><tr>";
+        columns.forEach((col) => {
+          let cls = "";
+          if (col.includes("NA") || col.includes("na")) cls = "na";
+          else if (col.includes("0")) cls = "c0";
+          else if (col.includes("1")) cls = "c1";
+          html += `<th class="${cls}">${col}</th>`;
+        });
+        html += "</tr>";
+
+        data.forEach((row) => {
+          html += "<tr>";
+          columns.forEach((col) => {
+            let val = row[col] ?? "-";
+            let style = "";
+
+            const baseColor = "35,142,35";
+            const baseColor2 = "255,44,44";
+            const applyOpacity = (color, ratio) => {
+              const opacity = Math.min(1, Math.max(0.1, ratio));
+              return `background-color: rgba(${color}, ${opacity})`;
+            };
+
+            // --- Heatmap: correct vs incorrect ---
+            if (col.startsWith("correct_")) {
+              const classNum = col.split("_")[1];
+              const correctKey = `correct_${classNum}`;
+              const incorrectKey = `incorrect_${classNum}`;
+              const correct = row[correctKey] ?? 0;
+              const realKey = `real_${classNum}`;
+              const real = row[realKey] ?? 0;
+
+              if (correct > 0) {
+                const ratio = correct / real;
+                style = applyOpacity(baseColor, ratio);
+              }
+            }
+
+            if (col.startsWith("incorrect_")) {
+              const classNum = col.split("_")[1];
+              const correctKey = `correct_${classNum}`;
+              const incorrectKey = `incorrect_${classNum}`;
+              const correct = row[correctKey] ?? 0;
+              const incorrect = row[incorrectKey] ?? 0;
+              const realKey = `real_${classNum}`;
+              const real = row[realKey] ?? 0;
+
+              if (incorrect > 0) {
+                const ratio = incorrect / real;
+                style = applyOpacity(baseColor2, ratio);
+              }
+            }
+
+            // --- Heatmap: prática global ---
+            if (col === "practice") {
+              const totalCorrect =
+                (row["correct_0"] ?? 0) +
+                (row["correct_1"] ?? 0) +
+                (row["correct_na"] ?? 0);
+              const totalIncorrect =
+                (row["incorrect_0"] ?? 0) +
+                (row["incorrect_1"] ?? 0) +
+                (row["incorrect_na"] ?? 0);
+              const total = totalCorrect + totalIncorrect;
+              if (total > 0) {
+                const ratio = totalCorrect / total;
+                style = applyOpacity(baseColor, ratio);
+              }
+            }
+
+            let cls = "";
+            if (col.includes("NA") || col.includes("na")) cls = "na";
+            else if (col.includes("0")) cls = "c0";
+            else if (col.includes("1")) cls = "c1";
+
+            html += `<td class="${cls}" style="${style}">${val}</td>`;
+          });
+          html += "</tr>";
+        });
+
+        html += "</table>";
+
+        // --- Legenda ---
+        html += `
+        <div class="legend">
+          <div>
+            <div class="gradient-bar gradient-success"></div>
+            <span>Intensidade (Verde) representa a proporção de acertos (0 → 1)</span>
+          </div>
+          <div>
+            <div class="gradient-bar gradient-danger"></div>
+            <span>Intensidade (Vermelho) representa a proporção de erros (0 → 1)</span>
+          </div>
+        </div>
+      `;
+
+        document.getElementById(containerId).innerHTML = html;
+      }
+
+      // --- Gerar tabela de matriz (TP/TN/FP/FN por classe) ---
+      function renderMatrixTable(containerId, data) {
+        const classes = ["na", "0", "1"]; // ajusta se tiveres mais classes
+        let html =
+          "<table class='matrix-table'><thead><tr><th rowspan='3' class='practice-header'>practice</th>";
+        classes.forEach((cls, idx) => {
+          const separatorClass =
+            idx < classes.length - 1 ? "group-separator" : "";
+          html += `<th colspan="3" class="c${cls} class-group-header ${separatorClass}">Class ${cls.toUpperCase()}</th>`;
+        });
+        html += "</tr><tr>";
+        // Segunda linha de cabeçalho - TP/FP e Real
+        classes.forEach((cls, idx) => {
+          const separatorClass =
+            idx < classes.length - 1 ? "group-separator" : "";
+          html += `<th class="c${cls} sub-header-separator">TP</th><th class="c${cls} ${separatorClass}">FP</th><th rowspan='2' class="c${cls} class-group-header ${separatorClass} real-value">Real</th>`;
+        });
+        html += "</tr><tr>";
+        // Terceira linha de cabeçalho - FN/TN
+        classes.forEach((cls, idx) => {
+          const separatorClass =
+            idx < classes.length - 1 ? "group-separator" : "";
+          html += `<th class="c${cls} sub-header-separator class-group-header">FN</th><th class="c${cls} class-group-header ${separatorClass}">TN</th>`;
+        });
+        html += "</tr></thead><tbody>";
+
+        const baseGreen = "112, 159, 37";
+        const baseRed = "255, 44, 44";
+        const applyOpacity = (color, ratio) =>
+          `background-color: rgba(${color}, ${Math.min(
+            1,
+            Math.max(0.1, ratio)
+          )})`;
+
+        data.forEach((row, index) => {
+          // Linha 1: practice (rowspan=2) + TP/FP + Real (rowspan=2)
+          const rowSeparatorClass = index > 0 ? "row-separator-top" : "";
+          html += `<tr><td rowspan='2' class='practice-header ${rowSeparatorClass}'>${row.practice}</td>`;
+
+          classes.forEach((cls, idx) => {
+            const TP = row[`TP_${cls}`] ?? 0;
+            const FP = row[`FP_${cls}`] ?? 0;
+            const real = row[`real_${cls}`] ?? 0;
+            const separatorClass =
+              idx < classes.length - 1 ? "group-separator" : "";
+
+            html += `
+              <td class="c${cls} sub-header-separator ${rowSeparatorClass}" style="${
+              TP > 0 ? applyOpacity(baseGreen, TP / Math.max(1, real)) : ""
+            }">${TP}</td>
+              <td class="c${cls} ${separatorClass} ${rowSeparatorClass}" style="${
+              FP > 0 ? applyOpacity(baseRed, FP / Math.max(1, real)) : ""
+            }">${FP}</td>
+          <td rowspan='2' class="c${cls} ${separatorClass} ${rowSeparatorClass} real-value">${real}</td>
+      `;
+          });
+          html += "</tr>";
+
+          // Linha 2: FN/TN
+          html += "<tr>";
+          classes.forEach((cls, idx) => {
+            const FN = row[`FN_${cls}`] ?? 0;
+            const TN = row[`TN_${cls}`] ?? 0;
+            const real = row[`real_${cls}`] ?? 0;
+            const separatorClass =
+              idx < classes.length - 1 ? "group-separator" : "";
+
+            html += `
+        <td class="c${cls} sub-header-separator" style="${
+              FN > 0 ? applyOpacity(baseRed, FN / Math.max(1, real)) : ""
+            }">${FN}</td>
+        <td class="c${cls} ${separatorClass}" style="${
+              TN > 0 ? applyOpacity(baseGreen, TN / Math.max(1, real)) : ""
+            }">${TN}</td>
+      `;
+          });
+          html += "</tr>";
+        });
+
+        html += "</tbody></table>";
+
+        // Legenda
+        html += `
+        <div class="legend">
+          <div>
+            <div class="gradient-bar gradient-success"></div>
+            <span>Verde = TP/TN (acertos)</span>
+          </div>
+          <div>
+            <div class="gradient-bar gradient-danger"></div>
+            <span>Vermelho = FP/FN (erros)</span>
+          </div>
+        </div>
+      `;
+
+        document.getElementById(containerId).innerHTML = html;
+      }
+
+      function renderPracticeMetrics(title, data) {
+        if (!data || data.length === 0)
+          return `<h3>${title}</h3><p>No data</p>`;
+
+        // Obter as colunas (assumindo que todas as rows têm as mesmas chaves)
+        let columns = Object.keys(data[0]);
+
+        let html = `<h3>${title}</h3><table><tr>`;
+        columns.forEach((col) => {
+          html += `<th>${col}</th>`;
+        });
+        html += "</tr>";
+
+        data.forEach((row) => {
+          html += "<tr>";
+          columns.forEach((col) => {
+            let val = row[col];
+            let style = "";
+            html += `<td>${val}</td>`;
+          });
+          html += "</tr>";
+        });
+
+        html += "</table>";
+        return html;
+      }
+
+      function renderMetricsTable(title, data) {
+        if (!data || data.length === 0)
+          return `<h3>${title}</h3><p>No data</p>`;
+        let row = data[0];
+        let html = `<h3>${title}</h3><table><tr><th>Metric</th><th>Value</th></tr>`;
+        for (const [key, value] of Object.entries(row)) {
+          html += `<tr><td>${key}</td><td>${value}</td></tr>`;
+        }
+        html += "</table>";
+        return html;
+      }
+
+      function renderCategoryTable(title, data) {
+        if (!data || data.length === 0)
+          return `<h3>${title}</h3><p>No data</p>`;
+
+        // Obter as colunas (assumindo que todas as rows têm as mesmas chaves)
+        let columns = Object.keys(data[0]);
+
+        let html = `<h3>${title}</h3><table><tr>`;
+        columns.forEach((col) => {
+          html += `<th>${col}</th>`;
+        });
+        html += "</tr>";
+
+        data.forEach((row) => {
+          html += "<tr>";
+          columns.forEach((col) => {
+            let val = row[col];
+            let style = "";
+
+            // Se for métrica numérica (entre 0 e 1), aplicar heatmap
+            if (typeof val === "number" && val >= 0 && val <= 1) {
+              if (val > 0.85)
+                style = "background-color: rgba(0,200,0,0.5)"; // verde (bom)
+              else if (val > 0.6)
+                style = "background-color: rgba(255,200,0,0.5)";
+              // amarelo (médio)
+              else style = "background-color: rgba(255,0,0,0.4)"; // vermelho (mau)
+            }
+
+            html += `<td>${val}</td>`;
+          });
+          html += "</tr>";
+        });
+
+        html += "</table>";
+        return html;
+      }
+
+      function renderLspTable(containerId, data) {
+        if (!data || data.length === 0) {
+          document.getElementById(containerId).innerHTML =
+            "<p>No data available</p>";
+          return;
+        }
+
+        // Obter as colunas (assumindo que todas as rows têm as mesmas chaves)
+        let columns = Object.keys(data[0]);
+
+        let html = "<table><tr>";
+        columns.forEach((col) => {
+          html += `<th>${col}</th>`;
+        });
+        html += "</tr>";
+
+        data.forEach((row) => {
+          html += "<tr>";
+          columns.forEach((col) => {
+            let val = row[col];
+
+            let cls = "";
+            if (col.includes("_qm")) cls = "na";
+            else if (col.includes("_equal_")) cls = "c0";
+            else if (col.includes("_paper")) cls = "c1";
+
+            html += `<td class="${cls}">${val}</td>`;
+          });
+          html += "</tr>";
+        });
+
+        html += "</table>";
+        document.getElementById(containerId).innerHTML = html;
+      }
+
+      async function loadData() {
+        const llm = document.getElementById("llm").value;
+        const prompt = document.getElementById("prompt").value;
+        const basePath = `/tool/src/new_classification/output/${prompt}/${llm}/`;
+
+        const geralMatriz = `${basePath}geral/matrix.json`;
+
+        const geralPath = `${basePath}geral/geral_individual_metrics.json`;
+        const classe0Path = `${basePath}classe 0/classe0_metrics.json`;
+        const classe1Path = `${basePath}classe 1/classe1_metrics.json`;
+        const naPath = `${basePath}classe NA/json_na_metrics.json`;
+
+        const practiceMetricsPath0 = `${basePath}/classe 0/classe0_individual_metrics.json`;
+        const practiceMetricsPath1 = `${basePath}/classe 1/classe1_individual_metrics.json`;
+        const practiceMetricsPath_na = `${basePath}/classe NA/json_na_individual_metrics.json`;
+
+        const categoryMetricsPath_na = `${basePath}category/category_classe_na.json`;
+        const categoryMetricsPath_classe0 = `${basePath}category/category_classe0.json`;
+        const categoryMetricsPath_classe1 = `${basePath}category/category_classe1.json`;
+
+        try {
+          document.getElementById("generalResultsContainer").style.display =
+            "block";
+
+          const geralMatrizData = await fetchJSON(geralMatriz);
+          renderMatrixTable("matrixTable", geralMatrizData);
+
+          document.getElementById("matrixTable").style.display = "block";
+
+          const na = await fetchJSON(naPath);
+          const classe0 = await fetchJSON(classe0Path);
+          const classe1 = await fetchJSON(classe1Path);
+
+          let classHtml = "";
+          classHtml += renderMetricsTable("Class NA", na);
+          classHtml += renderMetricsTable("Class 0", classe0);
+          classHtml += renderMetricsTable("Class 1", classe1);
+
+          document.getElementById("classMetrics").innerHTML = classHtml;
+          document.getElementById("classMetrics").style.display = "block";
+
+          // Carregar e renderizar métricas por categoria
+          const category_na = await fetchJSON(categoryMetricsPath_na);
+          const category_classe0 = await fetchJSON(categoryMetricsPath_classe0);
+          const category_classe1 = await fetchJSON(categoryMetricsPath_classe1);
+          let classHtml1 = "";
+          classHtml1 += renderCategoryTable("Class NA", category_na);
+          classHtml1 += renderCategoryTable("Class 0", category_classe0);
+          classHtml1 += renderCategoryTable("Class 1", category_classe1);
+
+          document.getElementById("categoryMetrics").innerHTML = classHtml1;
+          document.getElementById("categoryMetrics").style.display = "block";
+
+          // Carregar métricas por prática
+          const practiceMetrics0 = await fetchJSON(practiceMetricsPath0);
+          const practiceMetrics1 = await fetchJSON(practiceMetricsPath1);
+          const practiceMetrics_na = await fetchJSON(practiceMetricsPath_na);
+          let classHtml2 = "";
+          classHtml2 += renderPracticeMetrics("Class NA", practiceMetrics_na);
+          classHtml2 += renderPracticeMetrics("Class 0", practiceMetrics0);
+          classHtml2 += renderPracticeMetrics("Class 1", practiceMetrics1);
+
+          document.getElementById("practiceMetrics").innerHTML = classHtml2;
+          document.getElementById("practiceMetrics").style.display = "block";
+
+          // The "Trustworthiness Score Table" (lspTable) was commented out in the HTML,
+          // so the code to populate it is also commented out to prevent errors.
+          // const lspPath = `${basePath}score/score_comparison.json`;
+          // const lspData = await fetchJSON(lspPath);
+          // renderLspTable("lspTable", lspData);
+          //
+          // document.getElementById("lspTable").style.display = "block";
+
+          loadConsolidatedJSON(
+            `${basePath}score/new_score_consolidated.json`,
+            `${llm}_${prompt}`
+          );
+        } catch (err) {
+          alert("Error loading data: " + err.message);
+        }
+      }
+
+      async function loadMetrics(llm, classe, prompt) {
+        const basePath = `/tool/src/new_classification/output/${prompt}/${llm}/`;
+        const map = {
+          "classe 0": "classe 0/classe0_metrics.json",
+          "classe 1": "classe 1/classe1_metrics.json",
+          "classe NA": "classe NA/json_na_metrics.json",
+        };
+        return await fetchJSON(basePath + map[classe]);
+      }
+
+      async function compareSelected() {
+        const llm1 = document.getElementById("llm1").value;
+        const llm2 = document.getElementById("llm2").value;
+        const prompt = document.getElementById("promptCompare").value;
+        const prompt2 = document.getElementById("promptCompare2").value;
+
+        const data1_classe0 = await loadMetrics(llm1, "classe 0", prompt);
+        const data2_classe0 = await loadMetrics(llm2, "classe 0", prompt2);
+
+        const data1_classe1 = await loadMetrics(llm1, "classe 1", prompt);
+        const data2_classe1 = await loadMetrics(llm2, "classe 1", prompt2);
+
+        const data1_na = await loadMetrics(llm1, "classe NA", prompt);
+        const data2_na = await loadMetrics(llm2, "classe NA", prompt2);
+
+        const html_na = compareMetrics(
+          data1_na,
+          data2_na,
+          llm1,
+          llm2,
+          "classe NA"
+        );
+        const html_classe0 = compareMetrics(
+          data1_classe0,
+          data2_classe0,
+          llm1,
+          llm2,
+          (classe = "classe 0")
+        );
+        const html_classe1 = compareMetrics(
+          data1_classe1,
+          data2_classe1,
+          llm1,
+          llm2,
+          "classe 1"
+        );
+
+        document.getElementById("comparisonResult").innerHTML =
+          html_na + html_classe0 + html_classe1;
+      }
+
+      function compareMetrics(metrics1, metrics2, title1, title2, classe) {
+        if (
+          !metrics1 ||
+          metrics1.length === 0 ||
+          !metrics2 ||
+          metrics2.length === 0
+        ) {
+          return `<h3>Comparison ${title1} vs ${title2}</h3><p>Incomplete data for comparison.</p>`;
+        }
+
+        const m1 = metrics1[0];
+        const m2 = metrics2[0];
+        const keys = new Set([...Object.keys(m1), ...Object.keys(m2)]);
+
+        let html = `<h3>Comparison ${title1} vs ${title2}: ${classe}</h3><table>`;
+        html +=
+          "<tr><th>Metric</th><th>" +
+          title1 +
+          "</th><th>" +
+          title2 +
+          "</th><th>Difference</th></tr>";
+
+        for (const key of keys) {
+          const val1 = m1[key];
+          const val2 = m2[key];
+          let diffClass = "";
+          let diffText = "";
+
+          if (val1 === undefined) {
+            diffClass = "diff-added";
+            diffText = "Added";
+          } else if (val2 === undefined) {
+            diffClass = "diff-removed";
+            diffText = "Removed";
+          } else if (val1 !== val2) {
+            diffClass = "diff-changed";
+            const numVal1 = parseFloat(val1);
+            const numVal2 = parseFloat(val2);
+            if (!isNaN(numVal1) && !isNaN(numVal2)) {
+              const diff = numVal2 - numVal1;
+              const percentDiff = (diff / Math.abs(numVal1)) * 100;
+              diffText = `${diff > 0 ? "+" : ""}${diff.toFixed(
+                4
+              )} (${percentDiff.toFixed(2)}%)`;
+            } else {
+              diffText = "Changed";
+            }
+          } else {
+            diffText = "Equal";
+          }
+
+          html += `<tr>
+          <td class="metric-name">${key}</td>
+          <td>${val1 !== undefined ? val1 : "-"}</td>
+          <td>${val2 !== undefined ? val2 : "-"}</td>
+          <td class="${diffClass}">${diffText}</td>
+        </tr>`;
+        }
+
+        html += "</table>";
+        return html;
+      }
+
+      function setupCollapsibles() {
+        const collapsibles = document.querySelectorAll(".collapsible-header");
+        collapsibles.forEach((coll) => {
+          coll.addEventListener("click", function () {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            }
+          });
+        });
+      }
+      document.addEventListener("DOMContentLoaded", setupCollapsibles);
+    </script>
+
+    <script>
+      function toggleComparison() {
+        const section = document.getElementById("comparisonSection");
+        section.style.display = document.getElementById("toggleComparison")
+          .checked
+          ? "block"
+          : "none";
+      }
+
+      function toggle1() {
+        const section = document.getElementById("score1Results");
+        section.style.display = document.getElementById("toggle1").checked
+          ? "block"
+          : "none";
+      }
+    </script>
+
+    <script>
+      async function loadData2() {
+        const llm = document.getElementById("llm_score_1").value;
+        const prompt = document.getElementById("prompt_score_1").value;
+        const scoreType = document.getElementById("scoreSelect_1").value;
+        const basePath = `/tool/src/new_classification/output_score_1/unic_json.json`;
+
+        try {
+          // Carregar JSON
+          const response = await fetch(basePath);
+          const data = await response.json();
+
+          // Navegar na estrutura: data[llm][prompt][filename][version][method]
+          const promptData = data[llm]?.[prompt];
+
+          if (!promptData) {
+            alert(`Dados não encontrados para ${llm} - ${prompt}`);
+            return;
+          }
+
+          // Coletar todos os scores
+          const versions = [];
+          const scores = [];
+          const colors = [];
+
+          // Iterar por todos os ficheiros
+          for (const [filename, versionData] of Object.entries(promptData)) {
+            for (const [version, methodData] of Object.entries(versionData)) {
+              for (const [method, sourceData] of Object.entries(methodData)) {
+                // Se for Vx1, pegar score "input"
+                if (version === "Vx1" && sourceData.input) {
+                  versions.push(`${version}`);
+                  scores.push(sourceData.input.score);
+                  colors.push("#FF6B6B"); // Vermelho para input
+                }
+
+                // Pegar score do tipo selecionado (qm ou manual)
+                if (sourceData[scoreType]) {
+                  versions.push(`${version}`);
+                  scores.push(sourceData[scoreType].score);
+                  colors.push(version === "Vx1" ? "#4ECDC4" : "#45B7D1"); // Azul claro para Vx1, azul para outras
+                }
+              }
+            }
+          }
+
+          // Criar o gráfico
+          const trace = {
+            x: versions,
+            y: scores,
+            type: "bar",
+            marker: {
+              color: colors,
+              line: {
+                color: "rgba(0,0,0,0.3)",
+                width: 1,
+              },
+            },
+            text: scores.map((s) => s.toFixed(3)),
+            textposition: "outside",
+            hovertemplate: "<b>%{x}</b><br>Score: %{y:.4f}<extra></extra>",
+          };
+
+          const layout = {
+            title: {
+              text: `Score Comparison - ${llm} - ${prompt}`,
+              font: { size: 18 },
+            },
+            xaxis: {
+              title: "Versions",
+              tickangle: 0,
+            },
+            yaxis: {
+              title: "Score",
+              range: [0, 1],
+            },
+            showlegend: false,
+            height: 700,
+            margin: {
+              b: 150,
+            },
+          };
+
+          Plotly.newPlot("score_1_Plot", [trace], layout, { responsive: true });
+          document.getElementById("score_1_Plot").style.display = "block";
+        } catch (err) {
+          alert("Error loading data: " + err.message);
+          console.error(err);
+        }
+      }
+    </script>
+
+    <script>
+      let allConsolidatedData = {}; // Armazena vários JSONs carregados
+      let currentJsonKey = null; // Qual JSON está ativo
+      let currentFile = null;
+      let currentScoreType = "qm";
+      let currentMethods = [];
+      let isNanScoreActive = false; // Estado para controlar se está com NaN score
+
+      // JSON de vulnerabilidades
+      const inputJson = {
+        NewCustomer: {
+          Vx0: [],
+          Vx101: ["getAddressID"],
+          Vx138: ["createAddress"],
+          Vx158: ["getCOID"],
+          Vx197: ["insertCostumer"],
+          VxA: ["getAddressID", "getCOID", "createAddress", "insertCostumer"],
+        },
+        CreateNewCustomer: {
+          Vx0: [],
+          Vx078: ["createNewCustomer"],
+          Vx103: ["enterAddress"],
+          Vx113: ["enterAddress"],
+          Vx132: ["enterAddress"],
+          VxA: ["createNewCustomer", "enterAddress"],
+        },
+      };
+
+      const vulnerabilities = {};
+      Object.entries(inputJson).forEach(([file, versionsObj]) => {
+        vulnerabilities[file] = {};
+        Object.entries(versionsObj).forEach(([version, methods]) => {
+          vulnerabilities[file][version] = Array.isArray(methods)
+            ? methods
+            : [];
+        });
+      });
+
+      // Carregar JSON interativamente
+      async function loadConsolidatedJSON(path, key) {
+        const data = await fetchJSON(path);
+        allConsolidatedData[key] = data;
+        currentJsonKey = key;
+
+        // Popular dropdown de filenames
+        const fileSelect = document.getElementById("fileSelect");
+        const baseNames = [
+          ...new Set(Object.keys(data).map((fn) => fn.split("_")[0])),
+        ];
+        fileSelect.innerHTML = baseNames
+          .map((fn) => `<option value="${fn}">${fn}</option>`)
+          .join("");
+        currentFile = baseNames[0];
+
+        updateMainPlot();
+      }
+
+      // Função toggle para alternar entre score normal e com NaN
+      function toggleNanScore() {
+        const btn = document.getElementById("btn-scoreNan");
+
+        if (!isNanScoreActive) {
+          // Carregar score com NaN
+          const llm = document.getElementById("llm").value;
+          const prompt = document.getElementById("prompt").value;
+          const basePath = `/tool/src/new_classification/output/${prompt}/${llm}/`;
+          loadConsolidatedJSON(
+            `${basePath}score/score_consolidated.json`,
+            `${llm}_${prompt}_nan`
+          ).then(() => {
+            isNanScoreActive = true;
+            btn.textContent = "Score Without NAs";
+          });
+        } else {
+          // Voltar ao score original
+          const llm = document.getElementById("llm").value;
+          const prompt = document.getElementById("prompt").value;
+          const originalKey = `${llm}_${prompt}`;
+
+          if (allConsolidatedData[originalKey]) {
+            switchJSON(originalKey);
+            isNanScoreActive = false;
+            btn.textContent = "Score With NAs";
+          }
+        }
+      }
+
+      // Alternar entre JSONs carregados
+      function switchJSON(key) {
+        if (!allConsolidatedData[key]) return;
+        currentJsonKey = key;
+        const data = allConsolidatedData[key];
+        const fileSelect = document.getElementById("fileSelect");
+        const baseNames = [
+          ...new Set(Object.keys(data).map((fn) => fn.split("_")[0])),
+        ];
+        fileSelect.innerHTML = baseNames
+          .map((fn) => `<option value="${fn}">${fn}</option>`)
+          .join("");
+        currentFile = baseNames[0];
+        updateMainPlot();
+      }
+
+      // Atualizar gráfico principal
+      function updateMainPlot() {
+        if (!currentJsonKey) return;
+        const consolidatedData = allConsolidatedData[currentJsonKey];
+
+        currentFile = document.getElementById("fileSelect").value;
+        currentScoreType = "qm"; // Hardcoded to QM score
+
+        const versions = Object.keys(consolidatedData[currentFile]).sort();
+        currentMethods = new Set();
+        versions.forEach((v) => {
+          Object.keys(
+            consolidatedData[currentFile][v]["score_" + currentScoreType]
+          ).forEach((m) => currentMethods.add(m));
+        });
+        currentMethods = Array.from(currentMethods);
+
+        const colors = [
+          "#4978E0",
+          "#56E0D1",
+          "#BBE6A1",
+          "#59A14F",
+          "#9C87E0",
+          "#D302DE",
+        ];
+        const traces = [];
+
+        currentMethods.forEach((method, index) => {
+          const colorMethod = colors[index % colors.length];
+
+          const mainScores = versions.map((v) => {
+            const val =
+              consolidatedData[currentFile][v]["score_" + currentScoreType][
+                method
+              ];
+            return val !== undefined ? val : 0;
+          });
+          const groundtruthScores = versions.map((v) => {
+            const val = consolidatedData[currentFile][v]["score_paper"][method];
+            return val !== undefined ? val : 0;
+          });
+
+          const isVulnerable = versions.map(
+            (v) =>
+              vulnerabilities[currentFile] &&
+              vulnerabilities[currentFile][v] &&
+              vulnerabilities[currentFile][v].includes(method)
+          );
+
+          const diffPositive = groundtruthScores.map((ps, i) =>
+            ps - mainScores[i] > 0 ? ps - mainScores[i] : 0
+          );
+          const diffNegative = groundtruthScores.map((ps, i) =>
+            ps - mainScores[i] < 0 ? ps - mainScores[i] : 0
+          );
+
+          const borderColors = isVulnerable.map((v) =>
+            v ? "red" : colorMethod
+          );
+          const borderWidths = isVulnerable.map((v) => (v ? 2 : 0));
+
+          // Barra principal
+          traces.push({
+            x: versions,
+            y: mainScores,
+            type: "bar",
+            name: method,
+            customdata: versions.map((v, i) => ({
+              method,
+              version: v,
+              vulnerable: isVulnerable[i],
+            })),
+            hovertemplate: `Version: %{x}<br>Method: ${method}<br>Score: %{y}<extra></extra>`,
+            marker: {
+              color: colorMethod,
+              line: { color: borderColors, width: borderWidths },
+            },
+            offsetgroup: method,
+          });
+
+          // Sobreposição positiva
+          traces.push({
+            x: versions,
+            y: diffPositive,
+            type: "bar",
+            name: method + " (groundtruth difference)",
+            marker: { color: "rgba(255, 215, 0, 0.4)" },
+            offsetgroup: method,
+            base: mainScores,
+            showlegend: false,
+            hovertemplate: `Version: %{x}<br>Method: ${method}<br>Groundtruth Difference: %{y}<extra></extra>`,
+          });
+
+          // Sobreposição negativa
+          traces.push({
+            x: versions,
+            y: diffNegative.map((d) => Math.abs(d)),
+            type: "bar",
+            name: method + " (negative groundtruth difference)",
+            marker: { color: `rgba(255, 215, 0, 0.4)` },
+            offsetgroup: method,
+            base: groundtruthScores,
+            showlegend: false,
+            hovertemplate: `Version: %{x}<br>Method: ${method}<br>Groundtruth Score: %{y}<extra></extra>`,
+          });
+        });
+
+        const layout = {
+          barmode: "group",
+          title: `Scores for ${currentFile} (${
+            currentScoreType === "qm"
+              ? "Cristiano Quality Model"
+              : "Equal Weighted"
+          })`,
+          xaxis: { title: "Versions", type: "category" },
+          yaxis: { title: "Score", range: [0, 1.05] },
+          legend: { orientation: "h", y: -0.2 },
+          hovermode: "closest",
+          bargap: 0.3,
+          bargroupgap: 0.2,
+        };
+
+        Plotly.react("mainPlot", traces, layout).then(() => {
+          const mainPlot = document.getElementById("mainPlot");
+
+          mainPlot.removeAllListeners("plotly_click");
+          mainPlot.on("plotly_click", function (data) {
+            const point = data.points[0];
+            const info = point.customdata;
+            if (!info) return;
+            const version = info.version;
+            const method = info.method;
+            const versionData = consolidatedData[currentFile][version];
+            if (
+              !versionData ||
+              !versionData.practices ||
+              !versionData.practices[method]
+            )
+              return;
+            const practices = versionData.practices[method];
+            renderDetailTable(practices, version, method);
+          });
+
+          // Toggle Paper
+          const btn = document.getElementById("togglePaperBtn");
+          let showPaper = false;
+          const paperIndices = traces
+            .map((t, idx) =>
+              t.name &&
+              (t.name.includes("groundtruth difference") ||
+                t.name.includes("negative groundtruth difference"))
+                ? idx
+                : null
+            )
+            .filter((i) => i !== null);
+          Plotly.restyle(mainPlot, { visible: "legendonly" }, paperIndices);
+
+          btn.onclick = () => {
+            showPaper = !showPaper;
+            btn.textContent = showPaper
+              ? "Hide Groundtruth Comparison"
+              : "Show Groundtruth Comparison";
+            const visibility = showPaper ? true : "legendonly";
+            Plotly.restyle(mainPlot, { visible: visibility }, paperIndices);
+          };
+        });
+      }
+
+      // Renderizar tabela de práticas
+      function renderDetailTable(practices, version, method) {
+        // garante que practices tem o que precisamos
+        if (!practices) {
+          document.getElementById("detailTable").innerHTML =
+            "<div>No data</div>";
+          document.getElementById("detailTitle").style.display = "none";
+          return;
+        }
+
+        if (currentScoreType === "equal_weights") {
+          currentScoreType = "manual";
+        }
+        const gt = practices["groundtruth"] || {}; // Groundtruth
+        const selectedPractices = practices[currentScoreType] || {};
+
+        // Cabeçalho
+        let html = `<h3>Method Details: ${method} | Version: ${version}</h3>
+                    <table class="practice-table">
+                      <thead>
+                        <tr>
+                          <th>Source</th>`;
+        for (const p of Object.keys(selectedPractices)) {
+          const i = p.split(" ")[1];
+          html += `<th>P${i}</th>`;
+        }
+        html += `</tr></thead><tbody>`;
+
+        // LLM Output Row
+        html += `<tr><td class="metric-name">LLM Output</td>`;
+        for (const [p, s] of Object.entries(selectedPractices)) {
+          html += `<td>${s !== null && s !== undefined ? s : "NA"}</td>`;
+        }
+        html += `</tr>`;
+
+        // Groundtruth Row
+        html += `<tr><td class="metric-name">Groundtruth</td>`;
+        for (const p of Object.keys(selectedPractices)) {
+          const gtVal = gt[p];
+          html += `<td>${
+            gtVal !== null && gtVal !== undefined ? gtVal : "NA"
+          }</td>`;
+        }
+        html += `</tr></tbody></table>`;
+
+        const detailTableContainer = document.getElementById("detailTable");
+        detailTableContainer.innerHTML = html;
+        document.getElementById("detailTitle").style.display = "block";
+
+        // Recalculate the max-height of the collapsible section to fit the new content
+        const collapsibleContent = detailTableContainer.closest(
+          ".collapsible-content"
+        );
+        if (collapsibleContent && collapsibleContent.style.maxHeight) {
+          collapsibleContent.style.maxHeight =
+            collapsibleContent.scrollHeight + "px";
+        }
+      }
+
+      // Funções de interface
+      function loadScoreGraphic() {
+        updateMainPlot();
+      }
+
+      function loadWithNanScore() {
+        toggleNanScore();
+      }
+    </script>
+  </body>
+</html>

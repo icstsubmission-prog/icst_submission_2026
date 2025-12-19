@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LLM Evaluation Dashboard</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>LLM Evaluation Dashboard</h1>
+
+      <!-- General Selection -->
+      <section class="section">
+        <h2>General Results</h2>
+        <div class="controls">
+          <label for="llm">LLM:</label>
+          <select id="llm">
+            <option value="gpt-3.5-turbo">GPT-3.5</option>
+            <option value="gpt-4.1">GPT-4.1</option>
+            <option value="gpt-4o-mini">GPT-4o-mini</option>
+            <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+            <option value="gemini-2.5-flash">Gemini-2.5-flash</option>
+          </select>
+
+          <label for="prompt">Prompt:</label>
+          <select id="prompt">
+            <option value="prompt_1">Prompt 1</option>
+            <option value="prompt_2">Prompt 2</option>
+            <option value="prompt_4">Prompt 4</option>
+            <option value="prompt_5">Prompt 5</option>
+            <option value="universal">Universal</option>
+          </select>
+
+          <button class="btn-primary" onclick="loadData()">Load Results</button>
+        </div>
+
+        <!-- Comparison Section -->
+        <section class="section">
+          <label>
+            <input
+              type="checkbox"
+              id="toggleComparison"
+              onchange="toggleComparison()"
+            />
+            Compare Models (Metrics per Class)
+          </label>
+
+          <div id="comparisonSection" style="display: none">
+            <h2>Comparison</h2>
+            <div class="controls">
+              <label for="llm1">Model 1:</label>
+              <select id="llm1">
+                <option value="gpt-3.5-turbo">GPT-3.5</option>
+                <option value="gpt-4.1">GPT-4.1</option>
+                <option value="gpt-4o-mini">GPT-4o-mini</option>
+                <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+              </select>
+
+              <label for="llm2">Model 2:</label>
+              <select id="llm2">
+                <option value="gpt-3.5-turbo">GPT-3.5</option>
+                <option value="gpt-4.1">GPT-4.1</option>
+                <option value="gpt-4o-mini">GPT-4o-mini</option>
+                <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+              </select>
+
+              <label for="promptCompare">Prompt:</label>
+              <select id="promptCompare">
+                <option value="prompt_1">Prompt 1</option>
+                <option value="prompt_2">Prompt 2</option>
+                <option value="prompt_3">Prompt 3</option>
+                <option value="prompt_4">Prompt 4</option>
+                <option value="prompt_5">Prompt 5</option>
+              </select>
+
+              <label for="promptCompare2">Prompt:</label>
+              <select id="promptCompare2">
+                <option value="prompt_1">Prompt 1</option>
+                <option value="prompt_2">Prompt 2</option>
+                <option value="prompt_3">Prompt 3</option>
+                <option value="prompt_4">Prompt 4</option>
+                <option value="prompt_5">Prompt 5</option>
+              </select>
+
+              <button class="btn-primary" onclick="compareSelected()">
+                Compare
+              </button>
+            </div>
+
+            <div id="comparisonResult"></div>
+          </div>
+        </section>
+
+        <div
+          class="collapsible-container"
+          id="generalResultsContainer"
+          style="display: none"
+        >
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              General Confusion Matrix
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="generalTable" style="display: none"></div>
+                <div id="matrixTable" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Metrics per Category
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="categoryMetrics" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Metrics per Class
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="classMetrics" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Metrics per Practice
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div id="practiceMetrics" style="display: none"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Trustworthiness Score Table - Commented out as requested -->
+          <!--
+        <div class="collapsible">
+          <button type="button" class="collapsible-header">Trustworthiness Score Table</button>
+          <div class="collapsible-content">
+            <div class="collapsible-body">
+              <div id="lspTable" style="display: none"></div>
+            </div>
+          </div>
+        </div>
+        -->
+          <div class="collapsible">
+            <button type="button" class="collapsible-header">
+              Interactive Score Plots
+            </button>
+            <div class="collapsible-content">
+              <div class="collapsible-body">
+                <div class="controls">
+                  <label for="fileSelect">Choose FileName:</label>
+                  <select id="fileSelect">
+                    <!-- opções preenchidas dinamicamente -->
+                  </select>
+
+                  <button class="btn-primary" onclick="loadScoreGraphic()">
+                    Load Results
+                  </button>
+                </div>
+
+                <!-- <div class="toolbar">
+                  <button id="togglePaperBtn" class="btn-primary">
+                    Show Groundtruth Comparison
+                  </button>
+                  <button
+                    id="btn-scoreNan"
+                    class="btn-primary"
+                    onclick="loadWithNanScore()"
+                  >
+                    Score with NAs
+                  </button>
+                </div> -->
+                <div id="mainPlot"></div>
+
+                <h3 id="detailTitle" style="display: none">Method Details</h3>
+                <div id="detailTable"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Graphic of Score 1 - Commented out as requested -->
+      <!--
+      <section class="section">
+        <label>
+          <input type="checkbox" id="toggle1" onchange="toggle1()" />
+          Graphic of Score 1
+        </label>
+
+        <div id="score1Results" style="display: none">
+          <h2>Score 1 Graphic</h2>
+          <div class="controls">
+            <label for="llm_score_1">Model:</label>
+            <select id="llm_score_1">
+              <option value="gpt-3.5-turbo">GPT-3.5-turbo</option>
+              <option value="gpt-4.1">GPT-4.1</option>
+              <option value="gpt-4o-mini">GPT-4o-mini</option>
+              <option value="gpt-4.1-mini">GPT-4.1-mini</option>
+            </select>
+
+            <label for="prompt_score_1">Prompt:</label>
+            <select id="prompt_score_1">
+              <option value="prompt_1">Prompt 1</option>
+              <option value="prompt_2">Prompt 2</option>
+              <option value="prompt_5">Prompt 5</option>
+            </select>
+
+            <label for="scoreSelect_1">Escolher Score:</label>
+            <select id="scoreSelect_1">
+              <option value="qm">Score QM</option>
+              <option value="equal_weights">Score Manual</option>
+            </select>
+
+            <button class="btn-primary" onclick="loadData2()">
+              Show Graphic
+            </button>
+          </div>
+
+          <div id="score_1_Plot"></div>
+        </div>
+      </section>
+      -->
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/plots.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
