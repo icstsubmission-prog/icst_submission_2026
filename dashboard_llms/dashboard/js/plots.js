@@ -201,7 +201,7 @@ function updateMainPlot() {
     barmode: "group",
     title: `Scores for ${currentFile} (${
       currentScoreType === "qm"
-        ? "Cristiano Quality Model"
+        ? "LSP Quality Model"
         : "Equal Weighted"
     })`,
     xaxis: { title: "Versions", type: "category" },

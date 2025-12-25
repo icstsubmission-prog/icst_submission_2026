@@ -472,12 +472,12 @@ class XLSXProcessor:
         for p in sorted(df_detailed['practice'].unique(), key=lambda x: int(x)):
             subset = df_detailed[df_detailed['practice'] == p]
 
-            subset_0 = subset[subset["real"] == 0]
-            TP_0 = ((subset_0["expected"] == 0) & (subset_0["real"] == 0)).sum()
-            FP_0 = ((subset_0["expected"] == 0) & (subset_0["real"] != 0)).sum()
-            FN_0 = ((subset_0["expected"] != 0) & (subset_0["real"] == 0)).sum()
-            TN_0 = ((subset_0["expected"] != 0) & (subset_0["real"] != 0)).sum()
-
+            # subset_0 = subset[subset["real"] == 0]
+            TP_0 = ((subset["expected"] == 0) & (subset["real"] == 0)).sum()
+            FP_0 = ((subset["expected"] == 0) & (subset["real"] != 0)).sum()
+            FN_0 = ((subset["expected"] != 0) & (subset["real"] == 0)).sum()
+            TN_0 = ((subset["expected"] != 0) & (subset["real"] != 0)).sum()
+            
             fn_rows_0 = subset[(subset["expected"] != 0) & (subset["real"] == 0)][["Parent File", "FileName", "Method", "real", "expected"]]
             fp_rows_0 = subset[(subset["expected"] == 0) & (subset["real"] != 0)][["Parent File", "FileName", "Method", "real", "expected"]]
 
@@ -509,11 +509,11 @@ class XLSXProcessor:
             })
 
             # Classe 1
-            subset_1 = subset[subset["real"] == 1]
-            TP_1 = ((subset_1["expected"] == 1) & (subset_1["real"] == 1)).sum()
-            FP_1 = ((subset_1["expected"] == 1) & (subset_1["real"] != 1)).sum()
-            FN_1 = ((subset_1["expected"] != 1) & (subset_1["real"] == 1)).sum()
-            TN_1 = ((subset_1["expected"] != 1) & (subset_1["real"] != 1)).sum()
+            # subset_1 = subset[subset["real"] == 1]
+            TP_1 = ((subset["expected"] == 1) & (subset["real"] == 1)).sum()
+            FP_1 = ((subset["expected"] == 1) & (subset["real"] != 1)).sum()
+            FN_1 = ((subset["expected"] != 1) & (subset["real"] == 1)).sum()
+            TN_1 = ((subset["expected"] != 1) & (subset["real"] != 1)).sum()
 
             fn_rows_1 = subset[(subset["expected"] != 1) & (subset["real"] == 1)][["Parent File", "FileName", "Method", "real", "expected"]]
             fp_rows_1 = subset[(subset["expected"] == 1) & (subset["real"] != 1)][["Parent File", "FileName", "Method", "real", "expected"]]
@@ -557,11 +557,11 @@ class XLSXProcessor:
 
             correct_na = ((subset["real"].isna()) & (subset["expected"].isna())).sum()  # NA == 1
 
-            subset_na = subset[subset["real"].isna()]
-            TP_na = ((subset_na["expected"].isna()) & (subset_na["real"].isna())).sum()
-            FP_na = ((subset_na["expected"].notna()) & (subset_na["real"].isna())).sum()
-            FN_na = ((subset_na["expected"].isna()) & (subset_na["real"].notna())).sum()
-            TN_na = ((subset_na["expected"].notna()) & (subset_na["real"].notna())).sum()
+            # subset_na = subset[subset["real"].isna()]
+            TP_na = ((subset["expected"].isna()) & (subset["real"].isna())).sum()
+            FP_na = ((subset["expected"].notna()) & (subset["real"].isna())).sum()
+            FN_na = ((subset["expected"].isna()) & (subset["real"].notna())).sum()
+            TN_na = ((subset["expected"].notna()) & (subset["real"].notna())).sum()
 
             # # Métricas para classe NA
             # TP_na = (subset["real"].isna() & subset["expected"].isna()).sum()       # NA == NA
@@ -750,13 +750,13 @@ class XLSXProcessor:
             subset = df_detailed[df_detailed['subcategory'] == subcat]
 
             # Classe 1
-            subset_1 = subset[subset["expected"] == 1]
+            # subset_1 = subset[subset["expected"] == 1]
             # subset_1 = subset
 
-            TP_1 = ((subset_1["expected"] == 1) & (subset_1["real"] == 1)).sum()
-            FP_1 = ((subset_1["expected"] == 1) & (subset_1["real"] != 1)).sum()
-            FN_1 = ((subset_1["expected"] != 1) & (subset_1["real"] == 1)).sum()
-            TN_1 = ((subset_1["expected"] != 1) & (subset_1["real"] != 1)).sum()
+            TP_1 = ((subset["expected"] == 1) & (subset["real"] == 1)).sum()
+            FP_1 = ((subset["expected"] == 1) & (subset["real"] != 1)).sum()
+            FN_1 = ((subset["expected"] != 1) & (subset["real"] == 1)).sum()
+            TN_1 = ((subset["expected"] != 1) & (subset["real"] != 1)).sum()
 
             accuracy_1, precision_1, recall_1, f1_1, total_1, correct_1 = self.compute_metrics(TP_1, TN_1, FP_1, FN_1)
 
@@ -782,12 +782,12 @@ class XLSXProcessor:
 
             # Classe 0
 
-            subset_0 = subset[subset["expected"] == 0]
+            # subset_0 = subset[subset["expected"] == 0]
             # subset_0 = subset
-            TP_0 = ((subset_0["expected"] == 0) & (subset_0["real"] == 0)).sum()
-            FP_0 = ((subset_0["expected"] == 0) & (subset_0["real"] != 0)).sum()
-            FN_0 = ((subset_0["expected"] != 0) & (subset_0["real"] == 0)).sum()
-            TN_0 = ((subset_0["expected"] != 0) & (subset_0["real"] != 0)).sum()
+            TP_0 = ((subset["expected"] == 0) & (subset["real"] == 0)).sum()
+            FP_0 = ((subset["expected"] == 0) & (subset["real"] != 0)).sum()
+            FN_0 = ((subset["expected"] != 0) & (subset["real"] == 0)).sum()
+            TN_0 = ((subset["expected"] != 0) & (subset["real"] != 0)).sum()
 
             accuracy_0, precision_0, recall_0, f1_0, total_0, correct_0 = self.compute_metrics(TP_0, TN_0, FP_0, FN_0)
 
@@ -811,12 +811,12 @@ class XLSXProcessor:
 
             # Classe NA
 
-            subset_na = subset[subset["expected"].isna()]
+            # subset_na = subset[subset["expected"].isna()]
             # subset_na = subset
-            TP_na = ((subset_na["expected"].isna()) & (subset_na["real"].isna())).sum()
-            FP_na = ((subset_na["expected"].isna()) & (subset_na["real"].notna())).sum()
-            FN_na = ((subset_na["expected"].notna()) & (subset_na["real"].isna())).sum()
-            TN_na = ((subset_na["expected"].notna()) & (subset_na["real"].notna())).sum()
+            TP_na = ((subset["expected"].isna()) & (subset["real"].isna())).sum()
+            FP_na = ((subset["expected"].isna()) & (subset["real"].notna())).sum()
+            FN_na = ((subset["expected"].notna()) & (subset["real"].isna())).sum()
+            TN_na = ((subset["expected"].notna()) & (subset["real"].notna())).sum()
 
 
 
@@ -875,6 +875,8 @@ class XLSXProcessor:
 
         # Carregar dados
         df = pd.read_excel(expected_excel)
+
+        df.columns = [str(c).strip() for c in df.columns]
 
         with open(weights_path, "r") as f:
             weights_json = json.load(f)
@@ -990,18 +992,17 @@ class XLSXProcessor:
         df.to_json(output_json, orient='records')
 
 
-    def score_comparison_table(self, qm_score, manual_score, cristiano_score, output_comparison, groundtruth_path, output_all, output_consolidated_json, gt_score_qm_path=None, gt_score_manual_path=None):
+    def score_comparison_table(self, qm_score, paper_score_path, output_comparison, groundtruth_path, output_all, output_consolidated_json, gt_score_qm_path=None):
         df_qm = pd.read_excel(qm_score)
-        df_manual = pd.read_excel(manual_score)
-        
-        with open(cristiano_score, "r", encoding="utf-8") as f:
+
+        with open(paper_score_path, 'r', encoding='utf-8') as f:
             paper_data = json.load(f)
 
         paper_rows = []
         for main_key, versions in paper_data.items():
             for vx, methods in versions.items():
                 for method, score in methods.items():
-                    if method != "final":  # ignorar campo "final"
+                    if method != "final":
                         filename = f"{main_key}_{vx}"
                         paper_rows.append({
                             "FileName": filename,
@@ -1010,49 +1011,27 @@ class XLSXProcessor:
                         })
         df_paper = pd.DataFrame(paper_rows)
 
-        # --- Normalizar nomes ---
-        df_qm.columns = [c.strip() for c in df_qm.columns]
-        df_manual.columns = [c.strip() for c in df_manual.columns]
-
-        # Renomear colunas conforme padrão
-        if "score_manual" in df_manual.columns:
-            df_manual.rename(columns={"score_manual": "score_equal_weights"}, inplace=True)
-        elif "score" in df_manual.columns:
-            df_manual.rename(columns={"score": "score_equal_weights"}, inplace=True)
+        df_qm.columns = [str(c).strip() for c in df_qm.columns]
 
         if "score" in df_qm.columns:
             df_qm.rename(columns={"score": "score_qm"}, inplace=True)
 
-        # --- Merge QM e Manual ---
-        df_merged = pd.merge(
-            df_qm,
-            df_manual,
-            on=["Parent File", "FileName", "Method"],
-            how="outer",
-            suffixes=("_qm", "_manual")
-        )
+        df_merged = df_qm
 
-        if gt_score_qm_path and gt_score_manual_path:
+        if gt_score_qm_path:
             df_gt_qm = pd.read_excel(gt_score_qm_path)
-            df_gt_manual = pd.read_excel(gt_score_manual_path)
-
-            df_gt_qm.columns = [c.strip() for c in df_gt_qm.columns]
-            df_gt_manual.columns = [c.strip() for c in df_gt_manual.columns]
+            df_gt_qm.columns = [str(c).strip() for c in df_gt_qm.columns]
 
             if "score" in df_gt_qm.columns:
                 df_gt_qm.rename(columns={"score": "score_groundtruth_qm"}, inplace=True)
-            if "score" in df_gt_manual.columns:
-                df_gt_manual.rename(columns={"score": "score_groundtruth_manual"}, inplace=True)
 
-            df_gt_merged = pd.merge(
+            df_merged = pd.merge(
+                df_merged,
                 df_gt_qm[["Parent File", "FileName", "Method", "score_groundtruth_qm"]],
-                df_gt_manual[["Parent File", "FileName", "Method", "score_groundtruth_manual"]],
                 on=["Parent File", "FileName", "Method"],
-                how="outer"
+                how="left"
             )
-            df_merged = pd.merge(df_merged, df_gt_merged, on=["Parent File", "FileName", "Method"], how="left")
 
-        # --- Merge com Paper ---
         df_final = pd.merge(
             df_merged,
             df_paper,
@@ -1063,14 +1042,11 @@ class XLSXProcessor:
         df_final.to_json(output_all, orient="records")
         self.good_score_table(output_all, output_consolidated_json, groundtruth_path)
 
-        # --- Limpeza final ---
-        cols_to_keep = [c for c in ["Parent File", "FileName", "Method", "score_qm", "score_equal_weights", "score_paper", "score_groundtruth_qm", "score_groundtruth_manual"] if c in df_final.columns]
+        cols_to_keep = [c for c in ["Parent File", "FileName", "Method", "score_qm", "score_paper", "score_groundtruth_qm"] if c in df_final.columns]
         df_final = df_final[cols_to_keep]
-        # --- Guardar ---
+
         df_final.to_excel(output_comparison, index=False)
         df_final.to_json(output_comparison.replace("xlsx", "json"), orient="records", indent=2)
-
-        # print(f"✅ JSON salvo")
 
     def good_score_table(self, output_all, output_consolidated_json, groundtruth_path):
         
@@ -1097,39 +1073,34 @@ class XLSXProcessor:
                 base, version = filename_full, "v0"
 
             score_qm = row.get("score_qm", None)
-            score_manual = row.get("score_equal_weights", None)
             score_paper = row.get("score_paper", None)
+            score_groundtruth_qm = row.get("score_groundtruth_qm", None)
 
-            practices_qm = {f"Practice {i}": row.get(f"{i}_qm", None) for i in range(1, 17)}
-            practices_manual = {f"Practice {i}": row.get(f"{i}_manual", None) for i in range(1, 17)}
+            practices_qm = {f"Practice {i}": row.get(str(i), None) for i in range(1, 17)}
 
             if version not in consolidated[base]:
                 consolidated[base][version] = {
                     "score_qm": {},
-                    "score_equal_weights": {},
                     "score_paper": {},
+                    "score_groundtruth_qm": {},
                     "practices": {}
                 }
 
             method = row["Method"]
             consolidated[base][version]["score_qm"][method] = score_qm
-            consolidated[base][version]["score_equal_weights"][method] = score_manual
             consolidated[base][version]["score_paper"][method] = score_paper
+            consolidated[base][version]["score_groundtruth_qm"][method] = score_groundtruth_qm
 
-            # Adicionar groundtruth se existir
             gt_practices = gt_lookup.get(filename_full, {}).get(method, {})
 
             consolidated[base][version]["practices"][method] = {
                 "qm": practices_qm,
-                "manual": practices_manual,
                 "groundtruth": gt_practices
             }
 
         # --- Guardar JSON consolidado ---
         with open(output_consolidated_json, "w", encoding="utf-8") as f:
             json.dump(consolidated, f, indent=2, ensure_ascii=False)
-
-        # print(f"✅ Consolidado guardado com groundtruth em {output_consolidated_json}")
 
 
 if __name__ == "__main__":
@@ -1223,12 +1194,13 @@ if __name__ == "__main__":
 
     # lista = [input_prompt_35_6]
 
-    # lista = [input_prompt_35_1, input_prompt_35_2, input_prompt_35_4, input_prompt_35_5, input_prompt_35_6,
-    #         input_prompt_4o_1, input_prompt_4o_2, input_prompt_4o_4, input_prompt_4o_5, input_prompt_4o_6,
-    #         input_prompt_41_1, input_prompt_41_2, input_prompt_41_4, input_prompt_41_5, input_prompt_41_6,
-    #         input_prompt_41_mini_1, input_prompt_41_mini_2, input_prompt_41_mini_4, input_prompt_41_mini_5, input_prompt_41_mini_6]
+    lista = [input_prompt_35_1, input_prompt_35_2, input_prompt_35_4, input_prompt_35_5, input_prompt_35_6,
+            input_prompt_4o_1, input_prompt_4o_2, input_prompt_4o_4, input_prompt_4o_5, input_prompt_4o_6,
+            input_prompt_41_1, input_prompt_41_2, input_prompt_41_4, input_prompt_41_5, input_prompt_41_6,
+            input_prompt_41_mini_1, input_prompt_41_mini_2, input_prompt_41_mini_4, input_prompt_41_mini_5, input_prompt_41_mini_6,
+            input_vertex_ai_1, input_vertex_ai_2, input_vertex_ai_5]
 
-    lista = [input_vertex_ai_1, input_vertex_ai_2, input_vertex_ai_5]
+    # lista = [input_vertex_ai_1, input_vertex_ai_2, input_vertex_ai_5]
 
     
     for i in lista:
@@ -1285,11 +1257,11 @@ if __name__ == "__main__":
         output_category_detailed_excel = f"{base_prompt}/category/category_detailed.xlsx"
 
         # Score
-        output_score_qm_excel = f"{base_prompt}/score/qm_score.xlsx"
-        output_score_qm = f"{base_prompt}/score/qm_score.json"
-        output_manual_weights_excel = f"{base_prompt}/score/manual_weights.xlsx"
-        output_score_manual = f"{base_prompt}/score/manual_weights.json"
-        output_llm_score_excel = f"{base_prompt}/score/llm_score.xlsx"
+        # output_score_qm_excel = f"{base_prompt}/score/qm_score.xlsx"
+        # output_score_qm = f"{base_prompt}/score/qm_score.json"
+        # output_manual_weights_excel = f"{base_prompt}/score/manual_weights.xlsx"
+        # output_score_manual = f"{base_prompt}/score/manual_weights.json"
+        # output_llm_score_excel = f"{base_prompt}/score/llm_score.xlsx"
 
 
         # New Score
@@ -1302,7 +1274,11 @@ if __name__ == "__main__":
         # Score table comparison
         output_score_comparison = f"{base_prompt}/score/score_comparison.xlsx"
         output_new_score_comparison = f"{base_prompt}/score/new_score_comparison.xlsx"
+    
+        # GT SCORE
 
+        output_gt_score_excel = f"{base_prompt}/score/gt_score.xlsx"
+        output_gt_score_json = f"{base_prompt}/score/gt_score.json"
 
         # Score 
         
@@ -1319,14 +1295,15 @@ if __name__ == "__main__":
 
         processor.category_metrics(output_prompt_excel, real, manual_weights, output_category_metrics_classe1, output_category_metrics_classe0, output_category_metrics_classe_na, output_category_detailed, output_category_detailed_excel)
 
-        processor.process_score(qm_weights, output_prompt_excel, output_score_qm_excel, output_score_qm)
-        processor.process_score(manual_weights, output_prompt_excel, output_manual_weights_excel, output_score_manual)
+        # processor.process_score(qm_weights, output_prompt_excel, output_score_qm_excel, output_score_qm)
+        # processor.process_score(manual_weights, output_prompt_excel, output_manual_weights_excel, output_score_manual)
 
         processor.process_score_divide_na(qm_weights, output_prompt_excel, output_new_score_qm_excel, output_new_score_qm)
-        processor.process_score_divide_na(manual_weights, output_prompt_excel, output_new_manual_weights_excel, output_new_score_manual)
+        # processor.process_score_divide_na(manual_weights, output_prompt_excel, output_new_manual_weights_excel, output_new_score_manual)
+        processor.process_score_divide_na(qm_weights, real, output_gt_score_excel, output_gt_score_json)
 
         # processor.process_score(llm_weights, output_prompt_excel, output_llm_score_excel)
 
         # processor.score_comparison_table(output_score_qm_excel, output_manual_weights_excel, paper_score, output_score_comparison, output_geral_metrics, output_all = f"{base_prompt}/score/score_comparison_all.json", output_consolidated_json = f"{base_prompt}/score/score_consolidated.json")
         
-        processor.score_comparison_table(output_new_score_qm_excel, output_new_manual_weights_excel, paper_score, output_new_score_comparison, output_geral_metrics, output_all = f"{base_prompt}/score/new_score_comparison_all.json", output_consolidated_json = f"{base_prompt}/score/new_score_consolidated.json", gt_score_qm_path=gt_score_qm_excel, gt_score_manual_path=gt_score_manual_excel)
+        processor.score_comparison_table(output_new_score_qm_excel, paper_score, output_new_score_comparison, output_geral_metrics, output_all = f"{base_prompt}/score/new_score_comparison_all.json", output_consolidated_json = f"{base_prompt}/score/new_score_consolidated.json", gt_score_qm_path=output_gt_score_excel)

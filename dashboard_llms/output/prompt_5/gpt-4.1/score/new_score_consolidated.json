@@ -2,28 +2,28 @@
   "NewCustomer": {
     "Vx0": {
       "score_qm": {
-        "createAddress": 0.291896324,
+        "process": 0.0047209276,
         "getAddressID": 0.2934703046,
+        "createAddress": 0.291896324,
         "getCOID": 0.529830176,
-        "insertCostumer": 0.291896324,
-        "process": 0.0047209276
-      },
-      "score_equal_weights": {
-        "createAddress": 0.1184210526,
-        "getAddressID": 0.1578947368,
-        "getCOID": 0.1904761905,
-        "insertCostumer": 0.1184210526,
-        "process": 0.0789473684
+        "insertCostumer": 0.291896324
       },
       "score_paper": {
-        "createAddress": 0.89,
+        "process": 0.53,
         "getAddressID": 0.89,
+        "createAddress": 0.89,
         "getCOID": 1.0,
-        "insertCostumer": 1.0,
-        "process": 0.53
+        "insertCostumer": 1.0
+      },
+      "score_groundtruth_qm": {
+        "process": 0.0070808844,
+        "getAddressID": 0.3044851263,
+        "createAddress": 0.291896324,
+        "getCOID": 0.291896324,
+        "insertCostumer": 0.291896324
       },
       "practices": {
-        "createAddress": {
+        "process": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -39,25 +39,7 @@
             "Practice 12": 0.0,
             "Practice 13": 0,
             "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
+            "Practice 15": 0,
             "Practice 16": 0
           },
           "groundtruth": {
@@ -66,7 +48,7 @@
             "Practice 3": 0.0,
             "Practice 4": 0.0,
             "Practice 5": 0.0,
-            "Practice 6": 0.0,
+            "Practice 6": 1.0,
             "Practice 7": 0.0,
             "Practice 8": 0.0,
             "Practice 9": null,
@@ -75,30 +57,12 @@
             "Practice 12": 0.0,
             "Practice 13": 0.0,
             "Practice 14": 0.0,
-            "Practice 15": 1.0,
+            "Practice 15": 0.0,
             "Practice 16": 0.0
           }
         },
         "getAddressID": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 1,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -135,7 +99,7 @@
             "Practice 16": 0.0
           }
         },
-        "getCOID": {
+        "createAddress": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -143,18 +107,38 @@
             "Practice 4": 0,
             "Practice 5": 0,
             "Practice 6": 0,
-            "Practice 7": 1,
+            "Practice 7": 0,
             "Practice 8": 0,
             "Practice 9": null,
             "Practice 10": null,
             "Practice 11": 0,
-            "Practice 12": null,
+            "Practice 12": 0.0,
             "Practice 13": 0,
-            "Practice 14": null,
+            "Practice 14": 0.0,
             "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
+          "groundtruth": {
+            "Practice 1": 1.0,
+            "Practice 2": 0.0,
+            "Practice 3": 0.0,
+            "Practice 4": 0.0,
+            "Practice 5": 0.0,
+            "Practice 6": 0.0,
+            "Practice 7": 0.0,
+            "Practice 8": 0.0,
+            "Practice 9": null,
+            "Practice 10": null,
+            "Practice 11": 0.0,
+            "Practice 12": 0.0,
+            "Practice 13": 0.0,
+            "Practice 14": 0.0,
+            "Practice 15": 1.0,
+            "Practice 16": 0.0
+          }
+        },
+        "getCOID": {
+          "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -210,24 +194,6 @@
             "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
           "groundtruth": {
             "Practice 1": 1.0,
             "Practice 2": 0.0,
@@ -244,62 +210,6 @@
             "Practice 13": 0.0,
             "Practice 14": 0.0,
             "Practice 15": 1.0,
-            "Practice 16": 0.0
-          }
-        },
-        "process": {
-          "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "groundtruth": {
-            "Practice 1": 1.0,
-            "Practice 2": 0.0,
-            "Practice 3": 0.0,
-            "Practice 4": 0.0,
-            "Practice 5": 0.0,
-            "Practice 6": 1.0,
-            "Practice 7": 0.0,
-            "Practice 8": 0.0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0.0,
-            "Practice 12": 0.0,
-            "Practice 13": 0.0,
-            "Practice 14": 0.0,
-            "Practice 15": 0.0,
             "Practice 16": 0.0
           }
         }
@@ -307,84 +217,28 @@
     },
     "Vx101": {
       "score_qm": {
-        "createAddress": 0.291896324,
+        "process": 0.0047209276,
         "getAddressID": 0.0047209276,
+        "createAddress": 0.291896324,
         "getCOID": 0.529830176,
-        "insertCostumer": 0.291896324,
-        "process": 0.0047209276
-      },
-      "score_equal_weights": {
-        "createAddress": 0.1184210526,
-        "getAddressID": 0.0789473684,
-        "getCOID": 0.1904761905,
-        "insertCostumer": 0.1184210526,
-        "process": 0.0789473684
+        "insertCostumer": 0.291896324
       },
       "score_paper": {
-        "createAddress": 0.89,
+        "process": 0.53,
         "getAddressID": 0.48,
+        "createAddress": 0.89,
         "getCOID": 1.0,
-        "insertCostumer": 1.0,
-        "process": 0.53
+        "insertCostumer": 1.0
+      },
+      "score_groundtruth_qm": {
+        "process": 0.0070808844,
+        "getAddressID": 0.0173097299,
+        "createAddress": 0.291896324,
+        "getCOID": 0.291896324,
+        "insertCostumer": 0.291896324
       },
       "practices": {
-        "createAddress": {
-          "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "groundtruth": {
-            "Practice 1": 1.0,
-            "Practice 2": 0.0,
-            "Practice 3": 0.0,
-            "Practice 4": 0.0,
-            "Practice 5": 0.0,
-            "Practice 6": 0.0,
-            "Practice 7": 0.0,
-            "Practice 8": 0.0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0.0,
-            "Practice 12": 0.0,
-            "Practice 13": 0.0,
-            "Practice 14": 0.0,
-            "Practice 15": 1.0,
-            "Practice 16": 0.0
-          }
-        },
-        "getAddressID": {
+        "process": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -403,7 +257,27 @@
             "Practice 15": 0,
             "Practice 16": 0
           },
-          "manual": {
+          "groundtruth": {
+            "Practice 1": 1.0,
+            "Practice 2": 0.0,
+            "Practice 3": 0.0,
+            "Practice 4": 0.0,
+            "Practice 5": 0.0,
+            "Practice 6": 1.0,
+            "Practice 7": 0.0,
+            "Practice 8": 0.0,
+            "Practice 9": null,
+            "Practice 10": null,
+            "Practice 11": 0.0,
+            "Practice 12": 0.0,
+            "Practice 13": 0.0,
+            "Practice 14": 0.0,
+            "Practice 15": 0.0,
+            "Practice 16": 0.0
+          }
+        },
+        "getAddressID": {
+          "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -440,7 +314,7 @@
             "Practice 16": 0.0
           }
         },
-        "getCOID": {
+        "createAddress": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -448,18 +322,38 @@
             "Practice 4": 0,
             "Practice 5": 0,
             "Practice 6": 0,
-            "Practice 7": 1,
+            "Practice 7": 0,
             "Practice 8": 0,
             "Practice 9": null,
             "Practice 10": null,
             "Practice 11": 0,
-            "Practice 12": null,
+            "Practice 12": 0.0,
             "Practice 13": 0,
-            "Practice 14": null,
+            "Practice 14": 0.0,
             "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
+          "groundtruth": {
+            "Practice 1": 1.0,
+            "Practice 2": 0.0,
+            "Practice 3": 0.0,
+            "Practice 4": 0.0,
+            "Practice 5": 0.0,
+            "Practice 6": 0.0,
+            "Practice 7": 0.0,
+            "Practice 8": 0.0,
+            "Practice 9": null,
+            "Practice 10": null,
+            "Practice 11": 0.0,
+            "Practice 12": 0.0,
+            "Practice 13": 0.0,
+            "Practice 14": 0.0,
+            "Practice 15": 1.0,
+            "Practice 16": 0.0
+          }
+        },
+        "getCOID": {
+          "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -515,24 +409,6 @@
             "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
           "groundtruth": {
             "Practice 1": 1.0,
             "Practice 2": 0.0,
@@ -549,62 +425,6 @@
             "Practice 13": 0.0,
             "Practice 14": 0.0,
             "Practice 15": 1.0,
-            "Practice 16": 0.0
-          }
-        },
-        "process": {
-          "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "groundtruth": {
-            "Practice 1": 1.0,
-            "Practice 2": 0.0,
-            "Practice 3": 0.0,
-            "Practice 4": 0.0,
-            "Practice 5": 0.0,
-            "Practice 6": 1.0,
-            "Practice 7": 0.0,
-            "Practice 8": 0.0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0.0,
-            "Practice 12": 0.0,
-            "Practice 13": 0.0,
-            "Practice 14": 0.0,
-            "Practice 15": 0.0,
             "Practice 16": 0.0
           }
         }
@@ -612,47 +432,29 @@
     },
     "Vx138": {
       "score_qm": {
-        "createAddress": 0.0047209276,
+        "process": 0.0047209276,
         "getAddressID": 0.291896324,
+        "createAddress": 0.0047209276,
         "getCOID": 0.529830176,
-        "insertCostumer": 0.291896324,
-        "process": 0.0047209276
-      },
-      "score_equal_weights": {
-        "createAddress": 0.0789473684,
-        "getAddressID": 0.1184210526,
-        "getCOID": 0.1904761905,
-        "insertCostumer": 0.1184210526,
-        "process": 0.0789473684
+        "insertCostumer": 0.291896324
       },
       "score_paper": {
-        "createAddress": 0.48,
+        "process": 0.53,
         "getAddressID": 0.89,
+        "createAddress": 0.48,
         "getCOID": 1.0,
-        "insertCostumer": 1.0,
-        "process": 0.53
+        "insertCostumer": 1.0
+      },
+      "score_groundtruth_qm": {
+        "process": 0.0070808844,
+        "getAddressID": 0.3044851263,
+        "createAddress": 0.0047209276,
+        "getCOID": 0.291896324,
+        "insertCostumer": 0.291896324
       },
       "practices": {
-        "createAddress": {
+        "process": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -676,7 +478,7 @@
             "Practice 3": 0.0,
             "Practice 4": 0.0,
             "Practice 5": 0.0,
-            "Practice 6": 0.0,
+            "Practice 6": 1.0,
             "Practice 7": 0.0,
             "Practice 8": 0.0,
             "Practice 9": null,
@@ -691,24 +493,6 @@
         },
         "getAddressID": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -745,7 +529,7 @@
             "Practice 16": 0.0
           }
         },
-        "getCOID": {
+        "createAddress": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -753,18 +537,38 @@
             "Practice 4": 0,
             "Practice 5": 0,
             "Practice 6": 0,
-            "Practice 7": 1,
+            "Practice 7": 0,
             "Practice 8": 0,
             "Practice 9": null,
             "Practice 10": null,
             "Practice 11": 0,
-            "Practice 12": null,
+            "Practice 12": 0.0,
             "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 1,
+            "Practice 14": 0.0,
+            "Practice 15": 0,
             "Practice 16": 0
           },
-          "manual": {
+          "groundtruth": {
+            "Practice 1": 1.0,
+            "Practice 2": 0.0,
+            "Practice 3": 0.0,
+            "Practice 4": 0.0,
+            "Practice 5": 0.0,
+            "Practice 6": 0.0,
+            "Practice 7": 0.0,
+            "Practice 8": 0.0,
+            "Practice 9": null,
+            "Practice 10": null,
+            "Practice 11": 0.0,
+            "Practice 12": 0.0,
+            "Practice 13": 0.0,
+            "Practice 14": 0.0,
+            "Practice 15": 0.0,
+            "Practice 16": 0.0
+          }
+        },
+        "getCOID": {
+          "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -820,24 +624,6 @@
             "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
           "groundtruth": {
             "Practice 1": 1.0,
             "Practice 2": 0.0,
@@ -854,62 +640,6 @@
             "Practice 13": 0.0,
             "Practice 14": 0.0,
             "Practice 15": 1.0,
-            "Practice 16": 0.0
-          }
-        },
-        "process": {
-          "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "groundtruth": {
-            "Practice 1": 1.0,
-            "Practice 2": 0.0,
-            "Practice 3": 0.0,
-            "Practice 4": 0.0,
-            "Practice 5": 0.0,
-            "Practice 6": 1.0,
-            "Practice 7": 0.0,
-            "Practice 8": 0.0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0.0,
-            "Practice 12": 0.0,
-            "Practice 13": 0.0,
-            "Practice 14": 0.0,
-            "Practice 15": 0.0,
             "Practice 16": 0.0
           }
         }
@@ -917,28 +647,28 @@
     },
     "Vx158": {
       "score_qm": {
-        "createAddress": 0.4649121053,
+        "process": 0.0047209276,
         "getAddressID": 0.291896324,
+        "createAddress": 0.4649121053,
         "getCOID": 0.0050979609,
-        "insertCostumer": 0.291896324,
-        "process": 0.0047209276
-      },
-      "score_equal_weights": {
-        "createAddress": 0.1232876712,
-        "getAddressID": 0.1184210526,
-        "getCOID": 0.0909090909,
-        "insertCostumer": 0.1184210526,
-        "process": 0.0789473684
+        "insertCostumer": 0.291896324
       },
       "score_paper": {
-        "createAddress": 0.89,
+        "process": 0.53,
         "getAddressID": 0.89,
+        "createAddress": 0.89,
         "getCOID": 0.48,
-        "insertCostumer": 1.0,
-        "process": 0.53
+        "insertCostumer": 1.0
+      },
+      "score_groundtruth_qm": {
+        "process": 0.0070808844,
+        "getAddressID": 0.3044851263,
+        "createAddress": 0.291896324,
+        "getCOID": 0.0047209276,
+        "insertCostumer": 0.291896324
       },
       "practices": {
-        "createAddress": {
+        "process": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -953,26 +683,8 @@
             "Practice 11": 0,
             "Practice 12": 0.0,
             "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 1,
+            "Practice 14": 0.0,
+            "Practice 15": 0,
             "Practice 16": 0
           },
           "groundtruth": {
@@ -981,7 +693,7 @@
             "Practice 3": 0.0,
             "Practice 4": 0.0,
             "Practice 5": 0.0,
-            "Practice 6": 0.0,
+            "Practice 6": 1.0,
             "Practice 7": 0.0,
             "Practice 8": 0.0,
             "Practice 9": null,
@@ -990,30 +702,12 @@
             "Practice 12": 0.0,
             "Practice 13": 0.0,
             "Practice 14": 0.0,
-            "Practice 15": 1.0,
+            "Practice 15": 0.0,
             "Practice 16": 0.0
           }
         },
         "getAddressID": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1050,7 +744,7 @@
             "Practice 16": 0.0
           }
         },
-        "getCOID": {
+        "createAddress": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -1063,13 +757,33 @@
             "Practice 9": null,
             "Practice 10": null,
             "Practice 11": 0,
-            "Practice 12": null,
+            "Practice 12": 0.0,
             "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
+            "Practice 14": null,
+            "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
+          "groundtruth": {
+            "Practice 1": 1.0,
+            "Practice 2": 0.0,
+            "Practice 3": 0.0,
+            "Practice 4": 0.0,
+            "Practice 5": 0.0,
+            "Practice 6": 0.0,
+            "Practice 7": 0.0,
+            "Practice 8": 0.0,
+            "Practice 9": null,
+            "Practice 10": null,
+            "Practice 11": 0.0,
+            "Practice 12": 0.0,
+            "Practice 13": 0.0,
+            "Practice 14": 0.0,
+            "Practice 15": 1.0,
+            "Practice 16": 0.0
+          }
+        },
+        "getCOID": {
+          "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1125,24 +839,6 @@
             "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
           "groundtruth": {
             "Practice 1": 1.0,
             "Practice 2": 0.0,
@@ -1159,62 +855,6 @@
             "Practice 13": 0.0,
             "Practice 14": 0.0,
             "Practice 15": 1.0,
-            "Practice 16": 0.0
-          }
-        },
-        "process": {
-          "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "groundtruth": {
-            "Practice 1": 1.0,
-            "Practice 2": 0.0,
-            "Practice 3": 0.0,
-            "Practice 4": 0.0,
-            "Practice 5": 0.0,
-            "Practice 6": 1.0,
-            "Practice 7": 0.0,
-            "Practice 8": 0.0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0.0,
-            "Practice 12": 0.0,
-            "Practice 13": 0.0,
-            "Practice 14": 0.0,
-            "Practice 15": 0.0,
             "Practice 16": 0.0
           }
         }
@@ -1222,28 +862,28 @@
     },
     "Vx197": {
       "score_qm": {
-        "createAddress": 0.4649121053,
+        "process": 0.0047209276,
         "getAddressID": 0.291896324,
+        "createAddress": 0.4649121053,
         "getCOID": 0.529830176,
-        "insertCostumer": 0.0047209276,
-        "process": 0.0047209276
-      },
-      "score_equal_weights": {
-        "createAddress": 0.1232876712,
-        "getAddressID": 0.1184210526,
-        "getCOID": 0.1904761905,
-        "insertCostumer": 0.0789473684,
-        "process": 0.0789473684
+        "insertCostumer": 0.0047209276
       },
       "score_paper": {
-        "createAddress": 0.89,
+        "process": 0.53,
         "getAddressID": 0.89,
+        "createAddress": 0.89,
         "getCOID": 1.0,
-        "insertCostumer": 0.48,
-        "process": 0.53
+        "insertCostumer": 0.48
+      },
+      "score_groundtruth_qm": {
+        "process": 0.0070808844,
+        "getAddressID": 0.3044851263,
+        "createAddress": 0.291896324,
+        "getCOID": 0.291896324,
+        "insertCostumer": 0.0047209276
       },
       "practices": {
-        "createAddress": {
+        "process": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -1258,26 +898,8 @@
             "Practice 11": 0,
             "Practice 12": 0.0,
             "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 1,
+            "Practice 14": 0.0,
+            "Practice 15": 0,
             "Practice 16": 0
           },
           "groundtruth": {
@@ -1286,7 +908,7 @@
             "Practice 3": 0.0,
             "Practice 4": 0.0,
             "Practice 5": 0.0,
-            "Practice 6": 0.0,
+            "Practice 6": 1.0,
             "Practice 7": 0.0,
             "Practice 8": 0.0,
             "Practice 9": null,
@@ -1295,30 +917,12 @@
             "Practice 12": 0.0,
             "Practice 13": 0.0,
             "Practice 14": 0.0,
-            "Practice 15": 1.0,
+            "Practice 15": 0.0,
             "Practice 16": 0.0
           }
         },
         "getAddressID": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1355,7 +959,7 @@
             "Practice 16": 0.0
           }
         },
-        "getCOID": {
+        "createAddress": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -1363,18 +967,38 @@
             "Practice 4": 0,
             "Practice 5": 0,
             "Practice 6": 0,
-            "Practice 7": 1,
+            "Practice 7": 0,
             "Practice 8": 0,
             "Practice 9": null,
             "Practice 10": null,
             "Practice 11": 0,
-            "Practice 12": null,
+            "Practice 12": 0.0,
             "Practice 13": 0,
             "Practice 14": null,
             "Practice 15": 1,
             "Practice 16": 0
           },
-          "manual": {
+          "groundtruth": {
+            "Practice 1": 1.0,
+            "Practice 2": 0.0,
+            "Practice 3": 0.0,
+            "Practice 4": 0.0,
+            "Practice 5": 0.0,
+            "Practice 6": 0.0,
+            "Practice 7": 0.0,
+            "Practice 8": 0.0,
+            "Practice 9": null,
+            "Practice 10": null,
+            "Practice 11": 0.0,
+            "Practice 12": 0.0,
+            "Practice 13": 0.0,
+            "Practice 14": 0.0,
+            "Practice 15": 1.0,
+            "Practice 16": 0.0
+          }
+        },
+        "getCOID": {
+          "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1430,24 +1054,6 @@
             "Practice 15": 0,
             "Practice 16": 0
           },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
           "groundtruth": {
             "Practice 1": 1.0,
             "Practice 2": 0.0,
@@ -1455,62 +1061,6 @@
             "Practice 4": 0.0,
             "Practice 5": 0.0,
             "Practice 6": 0.0,
-            "Practice 7": 0.0,
-            "Practice 8": 0.0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0.0,
-            "Practice 12": 0.0,
-            "Practice 13": 0.0,
-            "Practice 14": 0.0,
-            "Practice 15": 0.0,
-            "Practice 16": 0.0
-          }
-        },
-        "process": {
-          "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "groundtruth": {
-            "Practice 1": 1.0,
-            "Practice 2": 0.0,
-            "Practice 3": 0.0,
-            "Practice 4": 0.0,
-            "Practice 5": 0.0,
-            "Practice 6": 1.0,
             "Practice 7": 0.0,
             "Practice 8": 0.0,
             "Practice 9": null,
@@ -1527,47 +1077,29 @@
     },
     "VxA": {
       "score_qm": {
-        "createAddress": 0.0047209276,
+        "process": 0.0047209276,
         "getAddressID": 0.0047209276,
+        "createAddress": 0.0047209276,
         "getCOID": 0.0050979609,
-        "insertCostumer": 0.0047209276,
-        "process": 0.0047209276
-      },
-      "score_equal_weights": {
-        "createAddress": 0.0789473684,
-        "getAddressID": 0.0789473684,
-        "getCOID": 0.0909090909,
-        "insertCostumer": 0.0789473684,
-        "process": 0.0789473684
+        "insertCostumer": 0.0047209276
       },
       "score_paper": {
-        "createAddress": 0.0,
+        "process": 0.0,
         "getAddressID": 0.0,
+        "createAddress": 0.0,
         "getCOID": 0.0,
-        "insertCostumer": 0.0,
-        "process": 0.0
+        "insertCostumer": 0.0
+      },
+      "score_groundtruth_qm": {
+        "process": 0.0070808844,
+        "getAddressID": 0.0173097299,
+        "createAddress": 0.0047209276,
+        "getCOID": 0.0047209276,
+        "insertCostumer": 0.0047209276
       },
       "practices": {
-        "createAddress": {
+        "process": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1591,7 +1123,7 @@
             "Practice 3": 0.0,
             "Practice 4": 0.0,
             "Practice 5": 0.0,
-            "Practice 6": 0.0,
+            "Practice 6": 1.0,
             "Practice 7": 0.0,
             "Practice 8": 0.0,
             "Practice 9": null,
@@ -1606,24 +1138,6 @@
         },
         "getAddressID": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1660,7 +1174,7 @@
             "Practice 16": 0.0
           }
         },
-        "getCOID": {
+        "createAddress": {
           "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
@@ -1673,13 +1187,33 @@
             "Practice 9": null,
             "Practice 10": null,
             "Practice 11": 0,
-            "Practice 12": null,
+            "Practice 12": 0.0,
             "Practice 13": 0,
             "Practice 14": 0.0,
             "Practice 15": 0,
             "Practice 16": 0
           },
-          "manual": {
+          "groundtruth": {
+            "Practice 1": 1.0,
+            "Practice 2": 0.0,
+            "Practice 3": 0.0,
+            "Practice 4": 0.0,
+            "Practice 5": 0.0,
+            "Practice 6": 0.0,
+            "Practice 7": 0.0,
+            "Practice 8": 0.0,
+            "Practice 9": null,
+            "Practice 10": null,
+            "Practice 11": 0.0,
+            "Practice 12": 0.0,
+            "Practice 13": 0.0,
+            "Practice 14": 0.0,
+            "Practice 15": 0.0,
+            "Practice 16": 0.0
+          }
+        },
+        "getCOID": {
+          "qm": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1735,24 +1269,6 @@
             "Practice 15": 0,
             "Practice 16": 0
           },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
           "groundtruth": {
             "Practice 1": 1.0,
             "Practice 2": 0.0,
@@ -1760,62 +1276,6 @@
             "Practice 4": 0.0,
             "Practice 5": 0.0,
             "Practice 6": 0.0,
-            "Practice 7": 0.0,
-            "Practice 8": 0.0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0.0,
-            "Practice 12": 0.0,
-            "Practice 13": 0.0,
-            "Practice 14": 0.0,
-            "Practice 15": 0.0,
-            "Practice 16": 0.0
-          }
-        },
-        "process": {
-          "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "groundtruth": {
-            "Practice 1": 1.0,
-            "Practice 2": 0.0,
-            "Practice 3": 0.0,
-            "Practice 4": 0.0,
-            "Practice 5": 0.0,
-            "Practice 6": 1.0,
             "Practice 7": 0.0,
             "Practice 8": 0.0,
             "Practice 9": null,
@@ -1837,35 +1297,17 @@
         "createNewCustomer": 0.3152084034,
         "enterAddress": 0.5269885174
       },
-      "score_equal_weights": {
-        "createNewCustomer": 0.1363636364,
-        "enterAddress": 0.1428571429
-      },
       "score_paper": {
         "createNewCustomer": 0.72,
         "enterAddress": 1.0
       },
+      "score_groundtruth_qm": {
+        "createNewCustomer": 0.291896324,
+        "enterAddress": 0.291896324
+      },
       "practices": {
         "createNewCustomer": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1904,24 +1346,6 @@
         },
         "enterAddress": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -1965,35 +1389,17 @@
         "createNewCustomer": 0.0047209276,
         "enterAddress": 0.5269885174
       },
-      "score_equal_weights": {
-        "createNewCustomer": 0.0789473684,
-        "enterAddress": 0.1428571429
-      },
       "score_paper": {
         "createNewCustomer": 0.0,
         "enterAddress": 0.0
       },
+      "score_groundtruth_qm": {
+        "createNewCustomer": 0.0047209276,
+        "enterAddress": 0.291896324
+      },
       "practices": {
         "createNewCustomer": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": 0.0,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2032,24 +1438,6 @@
         },
         "enterAddress": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2093,35 +1481,17 @@
         "createNewCustomer": 0.3152084034,
         "enterAddress": 0.0050979609
       },
-      "score_equal_weights": {
-        "createNewCustomer": 0.1363636364,
-        "enterAddress": 0.0909090909
-      },
       "score_paper": {
         "createNewCustomer": 0.72,
         "enterAddress": 0.95
       },
+      "score_groundtruth_qm": {
+        "createNewCustomer": 0.291896324,
+        "enterAddress": 0.0047209276
+      },
       "practices": {
         "createNewCustomer": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2160,24 +1530,6 @@
         },
         "enterAddress": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2221,35 +1573,17 @@
         "createNewCustomer": 0.3152084034,
         "enterAddress": 0.0085231448
       },
-      "score_equal_weights": {
-        "createNewCustomer": 0.1363636364,
-        "enterAddress": 0.0952380952
-      },
       "score_paper": {
         "createNewCustomer": 0.0,
         "enterAddress": 0.0
       },
+      "score_groundtruth_qm": {
+        "createNewCustomer": 0.291896324,
+        "enterAddress": 0.0047209276
+      },
       "practices": {
         "createNewCustomer": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2288,24 +1622,6 @@
         },
         "enterAddress": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": null,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2349,35 +1665,17 @@
         "createNewCustomer": 0.3152084034,
         "enterAddress": 0.0050979609
       },
-      "score_equal_weights": {
-        "createNewCustomer": 0.1363636364,
-        "enterAddress": 0.0909090909
-      },
       "score_paper": {
         "createNewCustomer": 0.0,
         "enterAddress": 0.0
       },
+      "score_groundtruth_qm": {
+        "createNewCustomer": 0.291896324,
+        "enterAddress": 0.0047209276
+      },
       "practices": {
         "createNewCustomer": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 1,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2433,24 +1731,6 @@
             "Practice 15": 0,
             "Practice 16": 0
           },
-          "manual": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
           "groundtruth": {
             "Practice 1": 1.0,
             "Practice 2": 0.0,
@@ -2477,35 +1757,17 @@
         "createNewCustomer": 0.0050979609,
         "enterAddress": 0.0050979609
       },
-      "score_equal_weights": {
-        "createNewCustomer": 0.0909090909,
-        "enterAddress": 0.0909090909
-      },
       "score_paper": {
         "createNewCustomer": 0.0,
         "enterAddress": 0.0
       },
+      "score_groundtruth_qm": {
+        "createNewCustomer": 0.0047209276,
+        "enterAddress": 0.0047209276
+      },
       "practices": {
         "createNewCustomer": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,
@@ -2544,24 +1806,6 @@
         },
         "enterAddress": {
           "qm": {
-            "Practice 1": 1,
-            "Practice 2": 0,
-            "Practice 3": 0,
-            "Practice 4": 0,
-            "Practice 5": 0,
-            "Practice 6": 0,
-            "Practice 7": 0,
-            "Practice 8": 0,
-            "Practice 9": null,
-            "Practice 10": null,
-            "Practice 11": 0,
-            "Practice 12": null,
-            "Practice 13": 0,
-            "Practice 14": 0.0,
-            "Practice 15": 0,
-            "Practice 16": 0
-          },
-          "manual": {
             "Practice 1": 1,
             "Practice 2": 0,
             "Practice 3": 0,

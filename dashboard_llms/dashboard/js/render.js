@@ -125,14 +125,14 @@ function renderMatrixTable(containerId, data) {
   classes.forEach((cls, idx) => {
     const separatorClass =
       idx < classes.length - 1 ? "group-separator" : "";
-    html += `<th class="c${cls} sub-header-separator">TP</th><th class="c${cls} ${separatorClass}">FP</th><th rowspan='2' class="c${cls} class-group-header ${separatorClass} real-value">Real</th>`;
+    html += `<th class="c${cls} sub-header-separator">TP</th><th class="c${cls} ${separatorClass}">FN</th><th rowspan='2' class="c${cls} class-group-header ${separatorClass} real-value">Real</th>`;
   });
   html += "</tr><tr>";
   // Terceira linha de cabeçalho - FN/TN
   classes.forEach((cls, idx) => {
     const separatorClass =
       idx < classes.length - 1 ? "group-separator" : "";
-    html += `<th class="c${cls} sub-header-separator class-group-header">FN</th><th class="c${cls} class-group-header ${separatorClass}">TN</th>`;
+    html += `<th class="c${cls} sub-header-separator class-group-header">FP</th><th class="c${cls} class-group-header ${separatorClass}">TN</th>`;
   });
   html += "</tr></thead><tbody>";
 
@@ -151,7 +151,7 @@ function renderMatrixTable(containerId, data) {
 
     classes.forEach((cls, idx) => {
       const TP = row[`TP_${cls}`] ?? 0;
-      const FP = row[`FP_${cls}`] ?? 0;
+      const FN = row[`FN_${cls}`] ?? 0;
       const real = row[`real_${cls}`] ?? 0;
       const separatorClass =
         idx < classes.length - 1 ? "group-separator" : "";
@@ -161,8 +161,8 @@ function renderMatrixTable(containerId, data) {
         TP > 0 ? applyOpacity(baseGreen, TP / Math.max(1, real)) : ""
       }">${TP}</td>
         <td class="c${cls} ${separatorClass} ${rowSeparatorClass}" style="${
-        FP > 0 ? applyOpacity(baseRed, FP / Math.max(1, real)) : ""
-      }">${FP}</td>
+        FN > 0 ? applyOpacity(baseRed, FN / Math.max(1, real)) : ""
+      }">${FN}</td>
     <td rowspan='2' class="c${cls} ${separatorClass} ${rowSeparatorClass} real-value">${real}</td>
 `;
     });
@@ -171,7 +171,7 @@ function renderMatrixTable(containerId, data) {
     // Linha 2: FN/TN
     html += "<tr>";
     classes.forEach((cls, idx) => {
-      const FN = row[`FN_${cls}`] ?? 0;
+      const FP = row[`FP_${cls}`] ?? 0;
       const TN = row[`TN_${cls}`] ?? 0;
       const real = row[`real_${cls}`] ?? 0;
       const separatorClass =
@@ -179,8 +179,8 @@ function renderMatrixTable(containerId, data) {
 
       html += `
   <td class="c${cls} sub-header-separator" style="${
-        FN > 0 ? applyOpacity(baseRed, FN / Math.max(1, real)) : ""
-      }">${FN}</td>
+        FP > 0 ? applyOpacity(baseRed, FP / Math.max(1, real)) : ""
+      }">${FP}</td>
   <td class="c${cls} ${separatorClass}" style="${
         TN > 0 ? applyOpacity(baseGreen, TN / Math.max(1, real)) : ""
       }">${TN}</td>
