@@ -171,11 +171,11 @@ Regardless of the chosen execution mode, the final step is always data visualiza
 └── README.md                 # Este ficheiro.
 ```
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - **Backend**: Python
-- **Análise de Código Estático**: Joern
-- **Modelos de Linguagem**: OpenAI GPT-3.5/4, Google Vertex AI (Gemini)
-- **Parsing de Java**: `javalang`
-- **Manipulação de Dados**: `pandas`
-- **Visualização**: `Plotly.js`
+- **Static Code Analysis**: Joern
+- **Language Models**: OpenAI GPT-3.5/4o-mini/4.1-mini/4.1, Google Vertex AI (Gemini-2.5-flash)
+- **Java Parsing**: `javalang`
+- **Data Manipulation**: `pandas`
+- **Visualization**: `Plotly.js`
